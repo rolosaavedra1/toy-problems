@@ -29,6 +29,7 @@
     //
     //DUMB WAY OF DOING IT:
     // function: if given two arrays, adds all possible combinations of their contents
+    number = number || 3;
      var combinations = function (array1, array2) {
       var array3 = new Array(array1.length * array2.length);
       var counter = 0;
@@ -55,5 +56,22 @@
     }
   };
  //SMARTER WAY
- /* */
+ /*
+ var rockPaperScissors = function(rounds) {
+  rounds = rounds || 3;
+  var outcomes = [];
+  var plays = ['R', 'P', 'S'];
+  var getOutcomes = function(playedSoFar, roundsLeft) {    
+    if (roundsLeft === 0) {
+      outcomes.push(playedSoFar);
+    }
+    else {
+      for (var i = 0; i < plays.length; i++) {
+        getOutcomes(playedSoFar.concat(plays[i]), roundsLeft-1);
+      }
+    }
+  };
+  getOutcomes([], rounds);
+  return outcomes;
+}; */
 
