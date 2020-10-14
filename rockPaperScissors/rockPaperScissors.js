@@ -18,7 +18,7 @@
 *
 */
 
-var rockPaperScissors = function (number) {
+
   var rockPaperScissors = function (number) {
     // input: number
     // output: array of strings
@@ -57,6 +57,4 @@ var rockPaperScissors = function (number) {
   };
  //SMARTER WAY
  /* */
-
-};
 
