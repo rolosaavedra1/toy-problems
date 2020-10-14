@@ -48,8 +48,7 @@
     } else {
       // call combinations as many times as needed
       var outputArray = ['R', 'P', 'S']
-    while (outputArray.length !== Math.pow(3, number)) {
-        debugger;   
+    while (outputArray.length !== Math.pow(3, number)) {   
       outputArray = combinations(['R', 'P', 'S'], outputArray);
     }
     return outputArray;
