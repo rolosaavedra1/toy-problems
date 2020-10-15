@@ -67,7 +67,7 @@
     }
     else {
       for (var i = 0; i < plays.length; i++) {
-        getOutcomes(playedSoFar.concat(plays[i]), roundsLeft-1);
+        getOutcomes(playedSoFar + (plays[i]), roundsLeft-1);
       }
     }
   };
