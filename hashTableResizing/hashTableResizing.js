@@ -20,25 +20,33 @@ var getIndexBelowMaxForKey = function(str, max) {
   return hash % max;
 };
 
+//a hash table is an array of addresses, where each item in array points to a value.
 var makeHashTable = function() {
   var result = {};
-  var storage = [];
-  var storageLimit = 4;
-  var size = 0;
+  result.storage = [];
+  result.storageLimit = 4;
+  result.size = 0;
   
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+  result.insert = function(key, value) {
+    //check the if result.size + 1 > result.storageLimit
+    // if so, double storage limit, run through result.storage copying everything into a new storage array
+
+    //go into result.storage[hashfunc(key)], check if it's undefined or an array.
+    //if undefined, populate it with an array [key, value]
+    //if an array, create a new bucket array.
+    //if array.length>2, go through bucket array and copy its contents into new bucket, plus [key, value] at the end
+    //increase size by 1
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key) {
+    //look inside storage[hashfunc(key)], check if it's an array.
+    //if not, return an empty array
+    //if it is, check its length. if >2, go through bucket until a tuple[0] matches they key, then return tuple[1]
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function(key) {
+    //same as retrieve, but delete target tuple
+    //decrease size by 1
   };
 
   return result;
