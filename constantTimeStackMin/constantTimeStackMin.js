@@ -17,38 +17,57 @@
 /**
   * Stack Class
   */
-var Stack = function () {
+ var Stack = function () {
   this.storage = [];
   this.minimums = [];
 };
 
 // add an item to the top of the stack
-this.prototype.push = function (value) {
-  //if the size is 0, just push it
-  //this.minimum.push(value);
-  //when any value is added, check if it is >= than this.minimum.
+Stack.prototype.push = function (value) {
+ 
+  if (this.size()) {
+    //when any value is added, check if it is >= than this.minimum.
   //if so, just push it
+   if (value > this.minimums[this.minimums.length - 1]) {
+    this.storage.push(value);
+   } else {
+     this.minimums.push(value);
+     this.storage.push(value);
+   }
+  
   //if not, this.minimum.push(value)
   //then push it.
+
+  //if the size is 0, just push it, also add it to minimums
+  } else {
+    this.storage.push(value);
+    this.minimums.push(value);
+  }
+  
 };
 
 // remove an item from the top of the stack
-this.prototype.pop = function () {
+Stack.prototype.pop = function () {
   //if size is 0, don't do anything
-  //if this.storage(this.size() - 1) equals last item of minimums
+  if (this.storage.size()) {
+    //if last item in stack equals last item of minimums
   // just remove it from top, then remove it from minimum
-  // if not, just remove it
+    if (this.storage[this.size() - 1] === this.minimums[this.minimums.length - 1]) {
+      this.storage.pop();
+      this.minimums.pop();
+      // if not, just remove it
+    } else {
+      this.storage.pop();
+    }
+  }
 };
 
 // return the number of items in the stack
-this.prototype.size = function () {
+Stack.prototype.size = function () {
   return this.storage.length;
 };
 
 // return the minimum value in the stack
-this.prototype.min = function () {
-  return this.minimums.length;
-
+Stack.prototype.min = function () {
+  return this.minimums[this.minimums.length - 1];
 };
-
-
