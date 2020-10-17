@@ -15,44 +15,24 @@ var evenOccurrence = function(arr) {
   //output is an integer
   //edge cases: empty array, non-array input, no even occurrences
 
-  //a function iterCounter that finds occurrences and counts them
-  //input (arr, val, accumulator)
-  //output: # of occurrences
-
-  //create empty object
-  //iterate through array, if object(i) doesn't exist, object(i) =  iterCounter[i]
-  //if (iterCounter[i]%2 === 0), return i. 
-
-  if (!Array.isArray(arr)){
-    return 'Wrong input';
-  } else if (arr.lentgth === 0) {
-    return 'empty array';
-  }
-
-  var iterCounter = function(arr, val, accumulator) {
-    var accumulator = accumulator || 1;
-    for (var i = 0; i < arr.length - 1 ; i++) { 
-      if (arr.slice(i+1).indexOf(val) === -1) {
-        return accumulator;
-      } else {
-        accumulator++;
-        iterCounter(arr.slice(arr.indexOf(val)+1), val, accumulator);
-      }
-    }
-  }
-  var occurrences = {};
+  // find if instance of element in array
+  // counter object, add them up
+  // by end of iteration, you have an object with keys:occurences
+  // then go through array, checking object occurences, first one even, return it
+  counterObj = {};
   for (var i = 0; i < arr.length; i++) {
-    if (!occurrences[i]) {
-      occurrences[arr[i]] = iterCounter(arr, arr[i]);
+    if (counterObj[arr[i]]){
+      counterObj[arr[i]] += 1; 
     } else {
-      if (occurrences[i] % 2 === 0) {
-        return arr[i];
-      }
-      if (!occurrences.keys) {
-        return 'no occurrences are even';
-      }
+      counterObj[arr[i]] = 1;
     }
   }
-
+  for (var j = 0; j < arr.length; j++) {
+    if (counterObj[arr[j]] % 2 === 0){
+      return arr[j];
+    }
+  }
 };
+var onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
+console.log(onlyEven);
 
