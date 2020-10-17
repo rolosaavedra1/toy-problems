@@ -28,8 +28,17 @@ var makeHashTable = function() {
   result.size = 0;
   
   result.insert = function(key, value) {
-    //check the if result.size + 1 > result.storageLimit
+    //check the if array needs resizing
     // if so, double storage limit, run through result.storage copying everything into a new storage array
+    if (result.size + 1 > result.storageLimit) {
+      var extension = new Array(result.storageLimit);
+      result.size *= 2;
+      result.storageLimit *= 2;
+      result.storage.push(extension);
+    }
+    if (Array.isArray(result.storage[getIndexBelowMaxForKey(key)])) {
+
+    }
 
     //go into result.storage[hashfunc(key)], check if it's undefined or an array.
     //if undefined, populate it with an array [key, value]
