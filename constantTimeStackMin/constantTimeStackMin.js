@@ -49,15 +49,15 @@ Stack.prototype.push = function (value) {
 // remove an item from the top of the stack
 Stack.prototype.pop = function () {
   //if size is 0, don't do anything
-  if (this.storage.size()) {
+  if (this.size()) {
     //if last item in stack equals last item of minimums
   // just remove it from top, then remove it from minimum
     if (this.storage[this.size() - 1] === this.minimums[this.minimums.length - 1]) {
-      this.storage.pop();
+      Array.prototype.pop.call(this.storage);
       this.minimums.pop();
       // if not, just remove it
     } else {
-      this.storage.pop();
+      Array.prototype.pop.call(this.storage);
     }
   }
 };
