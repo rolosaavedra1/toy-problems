@@ -32,7 +32,34 @@
 
 // Feel free to add helper functions if needed.
 
+//go through array
+//swapOccurrence boolean as false
+//compare each item to the next (n-1) steps, swap them
+//keep iterating until no files require swapping
+
+//my intuition is that it has O(n^2)
 
 var bubbleSort = function(array) {
-  // Your code here.
+  // helper function to make it easier
+  var greaterValue = (value1, value2) => {
+    if (value1 > value2) {
+      return true
+    }
+    return false
+  };
+  var swapOccurrence = false;
+  for (var i = 1; i < array.length; i++) {
+    if (greaterValue(array[i-1], array[i])) {
+      swapOccurrence = true;
+      var holder = array[i - 1];
+      array[i-1] = array[i];
+      array[i] = holder;
+    }
+    if (i === array.length-1 && swapOccurrence) {
+      i = 1;
+      swapOccurrence = false;
+    }
+  }
+  return array;
 };
+bubbleSort([2, 1, 3]);
