@@ -39,27 +39,28 @@
 
 //my intuition is that it has O(n^2)
 
+//go through array, store every new maximum in a new maximums array, and every minimum
+//in a minimums array. also track occurrences. 
+//then go through each array, expanding by occurrences and filling it out, from minimum to maximums
+
+
 var bubbleSort = function(array) {
   // helper function to make it easier
-  var greaterValue = (value1, value2) => {
-    if (value1 > value2) {
-      return true
-    }
-    return false
-  };
-  var swapOccurrence = false;
+/*  var swapOccurrence = true;
   for (var i = 1; i < array.length; i++) {
-    if (greaterValue(array[i-1], array[i])) {
-      swapOccurrence = true;
-      var holder = array[i - 1];
-      array[i-1] = array[i];
-      array[i] = holder;
+    if ((array[i-1] > array[i])) {
+     var holder  = array[i];
+     array[i] = array[i-1];
+     array[i-1] = holder;
+     swapOccurence = true
     }
     if (i === array.length-1 && swapOccurrence) {
       i = 1;
-      swapOccurrence = false;
     }
   }
-  return array;
+  return array; */
+  for (var i = 0; i < array.length - 1; i++) {
+    if (a)
+  }
 };
 bubbleSort([2, 1, 3]);
