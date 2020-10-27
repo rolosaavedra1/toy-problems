@@ -44,23 +44,17 @@
 //then go through each array, expanding by occurrences and filling it out, from minimum to maximums
 
 
-var bubbleSort = function(array) {
-  // helper function to make it easier
-/*  var swapOccurrence = true;
-  for (var i = 1; i < array.length; i++) {
-    if ((array[i-1] > array[i])) {
-     var holder  = array[i];
-     array[i] = array[i-1];
-     array[i-1] = holder;
-     swapOccurence = true
-    }
-    if (i === array.length-1 && swapOccurrence) {
-      i = 1;
+var bubbleSort = function (array) {
+  var len = array.length;
+  var swaps = true;
+  for (var i = 0; i < len && swaps === true; i++) {
+    swaps = false;
+    for (var j = 0; i < len - 1 - i; j++) {
+      if (array[j] < array[j + 1]) {
+        swaps = true;
+        [array[i], array[j]] = [array[j], array[i]];
+      }
     }
   }
-  return array; */
-  for (var i = 0; i < array.length - 1; i++) {
-    if (a)
-  }
+  return array;
 };
-bubbleSort([2, 1, 3]);
