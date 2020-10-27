@@ -16,7 +16,7 @@ var firstNonRepeatedCharacter = function(string) {
   }
   var arr = string.split('');
   for (var i = 0; i < arr.length; i++) {
-    if (arr.lastIndexOf(arr[i]) === arr[i]) {
+    if (arr.lastIndexOf(arr[i]) === i) {
       return arr[i];
     }
   }
