@@ -12,14 +12,14 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var allAnagrams = function(word) {
+ var allAnagrams = function(word) {
   //create anagrams object, where we store every new anagram as a key.
   // if a new configuration doesn't exist, add a new key
   //it's going to have to be recursion, won't it
   if (word.length < 2) {
     return [word];
   } else {
-      var allAnswers = {};
+      var allAnswers = []
       //iterate through the word
       for (var i = 0; i < word.length; i++) {
         //for every letter in word, create a shorter string that excludes it
@@ -29,12 +29,10 @@ var allAnagrams = function(word) {
         var shortwordArray = allAnagrams(shorterWord);
         for (var j = 0; j < shortwordArray.length; j++) {
           //then iterate through this array, adding the missing letter to every string
-          var newAnagram = letter + shortwordArray[j]; 
-          if(!allAnswers[newAnagram]) {
-            allAnswers[newAnagram] = newAnagram;
-          }
+        allAnswers.push(letter + shortwordArray[j]);
+
         }
       }
-      return allAnswers.keys;
+      return allAnswers
   }
-}
+};
