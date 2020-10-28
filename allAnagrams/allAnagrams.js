@@ -25,5 +25,5 @@ var allAnagrams = function(someString) {
       anagrams.push([someString].concat(subtree));
     });
   }
-  return anagrams.join('');
+  return anagrams;
 };
