@@ -27,7 +27,7 @@
   *
   */
 
-var phoneDigitsToLetters = {
+ var phoneDigitsToLetters = {
   0: '0',
   1: '1',
   2: 'ABC',
@@ -42,5 +42,46 @@ var phoneDigitsToLetters = {
 
 
 var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+  //base case: digitString of length 1, return an array with all possible results [A, B, C]
+  //recursive case:
+  //iterate through digitString starting from start
+  //shorterString = digitString - currentLetter
+  //possibleStrings = telephoneWords(shorterString, start)
+  //iterate through possibleStrings
+  //possibAdds =  phoneDigitsToLetters[digitString[i]]
+  //add to them possible adds based on the current letter
+  //
+  //iterate through possib, concat that to each item in the possibleWords array
+  //produce an array with all possible additions
+  //iterate through that array 
+
+  //possibleWords = []
+  //go through string
+  //possibleLetters = split version of obj[key]
+  //iterate through possibleLetters
+  //var expPossibleWords = [];
+  //iterate through possible words
+  //add possible letters to each item in possiblewords
+  //possibleWords = expPossibleWords
+
+  var possibleWords = [];
+  for (var i = 0; i < digitString.length; i++) {
+    var possibleLetters = phoneDigitsToLetters[digitString[i]].split('');
+    var expPossibleWords = [];
+    var counter = 0;
+    for (var j = 0; j < possibleLetters.length; j++) {
+      if (possibleWords.length === 0) {
+        expPossibleWords = possibleLetters;
+        break;
+      } else {
+        for (var k = 0; k < possibleWords.length; k++) {
+          expPossibleWords[counter] = possibleWords[k].concat(possibleLetters[j]);
+          counter++;
+        }
+      }      
+    }
+    debugger;
+    possibleWords = expPossibleWords;
+  }
+  return possibleWords;
 };
