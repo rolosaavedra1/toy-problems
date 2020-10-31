@@ -18,4 +18,32 @@
  */
 
 var powerSet = function(str) {
+    //recursion, obviously
+    //subsets = []
+    //base case: if length is 0, return ['']
+    //add str to subset
+    //iterate over str, cut out one letter
+    //recursive case: over length 0
+    //subsubset = recurse(string)
+    //iterate over subsubset. any repeats already present in subsets, excise
+    //add subsubset to subset
+    //return subset
+    var subset = [];
+    if (str.length) {
+        subset.push(str);
+        var subsubset = [];
+        for (var i = 0; i < str.length; i++) {
+            var substr = str.substring(0, i) + str.substring(i+1, str.length);
+            subsubset = powerSet(substr);
+            for (var j = 0; j < subsubset.length; j++) {
+                if (subset.indexOf(subsubset[j]) !== -1) {
+                    subsubset.splice(j, 1);
+                } else {
+                    subset.push(subsubset[j]);
+                }
+            }
+        }
+        return subset;
+    }
+    return [''];
 };
