@@ -17,61 +17,38 @@
 * rockPaperScissors(5); // => ['RRRRR', 'RRRRP', 'RRRRS', etc...]
 *
 */
-
-
-  var rockPaperScissors = function (number) {
-    // input: number
-    // output: array of strings
-    // edge cases: input is < 0, 0
-    // base = [R, P, S] base^2 = [RR, RP, RS, PR, PP, PS, SR, SP, SS]
-    // so add the contents of base to every element of base
-    // output length will always be 3^number.
-    //
-    //DUMB WAY OF DOING IT:
-    // function: if given two arrays, adds all possible combinations of their contents
-    number = number || 3;
-     var combinations = function (array1, array2) {
-      var array3 = new Array(array1.length * array2.length);
-      var counter = 0;
-      for (var i = 0; i < array1.length; i++) {
-        for (var j = 0; j < array2.length; j++) { 
-          array3[counter] = (array1[i] + array2[j]);
-          counter++;
-        }
-      }
-      return array3;
-    }
-    //edge cases
-    if (number < 0) {
-      return 'Invalid input'
-    } else if (number === 0) {
-      return [];
-    } else {
-      // call combinations as many times as needed
-      var outputArray = ['R', 'P', 'S']
-    while (outputArray.length !== Math.pow(3, number)) {   
-      outputArray = combinations(['R', 'P', 'S'], outputArray);
-    }
-    return outputArray;
-    }
-  };
- //SMARTER WAY
- /*
- var rockPaperScissors = function(rounds) {
+//input: number
+//output: array of strings of length = number
+// it's a combinatorics problem
+// so we want a recursive function that takes in an array of the previously done plays, and adds to each of them R, P and S
+//PSEUDO: 
+// container variable plays
+// plays = recursive function recordedPlays ([], number )
+// recordedPlays = function definition (playsSoFar, roundsLeft) 
+  // if 0 rounds left, return playsSoFar (base case)
+  // loop over [R, P, S]
+    // create a shallow copy of array, add [i] to it
+  //playsSoFar = merge all 3 shallow arrays
+  // call recordedPlays(playsSoFar, roundsLeft - 1)
+//return plays
+var rockPaperScissors = function(rounds) {
   rounds = rounds || 3;
-  var outcomes = [];
-  var plays = ['R', 'P', 'S'];
-  var getOutcomes = function(playedSoFar, roundsLeft) {    
+  let plays = [];
+  let options = ['R', 'P', 'S'];
+  var recordedPlays = function(playedSoFar, roundsLeft) {    
     if (roundsLeft === 0) {
-      outcomes.push(playedSoFar);
+      plays.push(playedSoFar);
     }
     else {
-      for (var i = 0; i < plays.length; i++) {
-        getOutcomes(playedSoFar + (plays[i]), roundsLeft-1);
+      let shallowCopy = [];
+      for (var i = 0; i < options.length; i++) {
+        shallowCopy = playedSoFar.length < 1 ? options : shallowCopy.concat(playedSoFar.map(item => item + options[i]));
       }
+      playedSoFar = shallowCopy;
+      recordedPlays(playedSoFar, roundsLeft-1);
     }
   };
-  getOutcomes([], rounds);
-  return outcomes;
-}; */
+  recordedPlays([], rounds);
+  return plays;
+};
 
